@@ -1,0 +1,14 @@
+[workspace]
+authors = ["ZHU Yuhao 朱宇浩 <dr.yuhao.zhu@outlook.com>"]
+channels = ["https://conda.modular.com/max", "https://repo.prefix.dev/modular-community", "conda-forge"]
+name = "my-first-mojo-project"
+platforms = ["osx-arm64"]
+version = "20250904"
+
+[tasks]
+
+[dependencies]
+decimojo = "*"
+ipykernel = ">=6.29.5,<7"
+mojo = "==25.5"
+python = ">=3.11,<3.14"

@@ -1,0 +1,28 @@
+# .gitignore
+# Ignore all files without extensions
+*
+!/**/
+!*.*
+
+# pixi environments
+.pixi
+pixi.lock
+*.egg-info
+
+# Mojo temp files
+__mojocache__
+
+# MacOS files
+.DS_Store
+
+# Local settings
+.vscode
+.zed
+.helix
+tempCodeRunnerFile.mojo
+
+# Temporary files
+*test.mojo
+
+# Specific files
+src/mojo2py
