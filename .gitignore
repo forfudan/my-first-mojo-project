@@ -11,6 +11,7 @@ pixi.lock
 
 # Mojo temp files
 __mojocache__
+kgen*
 
 # MacOS files
 .DS_Store
@@ -23,6 +24,7 @@ tempCodeRunnerFile.mojo
 
 # Temporary files
 *test.mojo
+*test.py
 
 # Specific files
 src/mojo2py

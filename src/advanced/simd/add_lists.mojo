@@ -3,7 +3,7 @@ def add_lists(a: List[Float64], b: List[Float64]) -> List[Float64]:
     result = List[Float64]()
     for i in range(len(a)):
         result.append(a[i] + b[i])
-    return result
+    return result^
 
 
 def main():

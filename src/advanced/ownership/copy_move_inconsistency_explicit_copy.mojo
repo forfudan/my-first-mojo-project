@@ -1,5 +1,5 @@
-# src/advanced/ownership/copy_move_inconsistency_more.mojo
-struct Team:
+# src/advanced/ownership/copy_move_inconsistency_explicit_copy.mojo
+struct Team(ImplicitlyCopyable):
     var names: List[String]
 
     def __init__(out self, var *names: String):
@@ -7,9 +7,9 @@ struct Team:
         self.names = List[String](elements=names^)
 
     fn __copyinit__(out self, other: Self):
-        self.names = other.names
+        self.names = other.names.copy()
 
-    fn __moveinit__(out self, var other: Self):
+    fn __moveinit__(out self, deinit other: Self):
         self.names = other.names^
         # When move, add another person
         self.names.append("Yuhao")
@@ -17,12 +17,8 @@ struct Team:
 
 def main():
     var a = Team("Akari", "Bob", "Coco", "David")
-    var b = a
+    var b = a.copy()  # Make an explicit copy of `a`
 
     print("New team `b` contains the following people: ")
     for i in b.names:
-        print(i, end=", ")
-
-    print("\nOld team `a` contains the following people: ")
-    for i in a.names:
         print(i, end=", ")

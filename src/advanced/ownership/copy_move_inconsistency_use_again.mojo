@@ -1,4 +1,4 @@
-# src/advanced/ownership/copy_move_inconsistency.mojo
+# src/advanced/ownership/copy_move_inconsistency_use_again.mojo
 struct Team(ImplicitlyCopyable):
     var names: List[String]
 
@@ -21,4 +21,8 @@ def main():
 
     print("New team `b` contains the following people: ")
     for i in b.names:
+        print(i, end=", ")
+
+    print("\nOld team `a` contains the following people: ")
+    for i in a.names:
         print(i, end=", ")

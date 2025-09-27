@@ -1,4 +1,4 @@
-# src/basic/variables/copy_values_or_references.py
+# src/basic/copy/copy_values_or_references.py
 def main():
     lst1 = [1, 2, 3]  # `lst1` is now referring to a list object with three integers
     lst2 = lst1  # `lst2` is now referring to the same list object as `lst1`
