@@ -25,6 +25,7 @@ tempCodeRunnerFile.mojo
 # Temporary files
 *test.mojo
 *test.py
+test*.mojo
 
 # Specific files
 src/mojo2py
