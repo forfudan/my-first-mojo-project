@@ -10,7 +10,7 @@ def main():
     print()
 
     # Copy the value of `a` and let `b` to own it.
-    var b = a
+    var b = a.copy()
     print("b at address", String(Pointer(to=b)), "with values:")
     for i in b:
         print(i, end=", ")

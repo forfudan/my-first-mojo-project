@@ -6,9 +6,10 @@ platforms = ["osx-arm64"]
 version = "20250904"
 
 [tasks]
+test = "bash test.sh"
 
 [dependencies]
 decimojo = "*"
 ipykernel = ">=6.29.5,<7"
-mojo = "==25.5"
+mojo = "==0.25.6"
 python = ">=3.11,<3.14"

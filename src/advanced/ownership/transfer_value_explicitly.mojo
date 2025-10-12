@@ -5,7 +5,7 @@ def main():
         "The meta data of the list `a` is stored at address",
         String(Pointer(to=a)),
         "\nThe first element of the list `a` is stored at address",
-        a.data,
+        a._data,
         "\nThe list `a` contains ",
         end="",
     )
@@ -19,7 +19,7 @@ def main():
         "The meta data of the list `b` is stored at address",
         String(Pointer(to=b)),
         "\nThe first element of the list `b` is stored at address",
-        b.data,
+        b._data,
         "\nThe list `b` contains ",
         end="",
     )

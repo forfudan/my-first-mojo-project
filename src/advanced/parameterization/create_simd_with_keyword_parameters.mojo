@@ -5,11 +5,9 @@ def main():
         89, 117, 104, 97, 111, 90, 104, 117
     )
     var c = SIMD[dtype = DType.bool, size=2](True, False)
-    var d = SIMD[dtype = DType.uint8, size=8](1, 2, 3, 4)
-    var e = SIMD[dtype = DType.float32, size=1](1.0)
+    var d = SIMD[dtype = DType.float32, size=1](1.0)
 
     print("a =", a)
     print("b =", b)
     print("c =", c)
     print("d =", d)
-    print("e =", e)
