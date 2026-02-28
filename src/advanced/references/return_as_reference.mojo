@@ -9,7 +9,7 @@ def return_first_element_as_reference(
 
 
 def main():
-    var lst = List[String]("Mojo", "is", "interesting")
+    var lst: List[String] = ["Mojo", "is", "interesting"]
     print("The 1st item of the list is '", lst[0], "'", sep="")
     ref first = return_first_element_as_reference(lst)
     first = String("Miji")

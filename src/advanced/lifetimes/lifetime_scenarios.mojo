@@ -1,10 +1,10 @@
 # src/advanced/lifetimes/lifetime_scenarios.mojo
 def main():
-    var a = List[Int](1, 2, 3)
+    var a: List[Int] = [1, 2, 3]
     var x = String("I am a string.")
 
-    var ref b = a
-    var ref y = x
+    ref b = a
+    ref y = x
     var c = Pointer(to=a)
     var z = Pointer(to=x)
 
@@ -20,3 +20,5 @@ def main():
     x += " and I am modified."
     print(y)
     print(z[])
+
+    print("The end of the example.")

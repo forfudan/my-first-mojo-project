@@ -2,12 +2,12 @@
 def main():
     var a: Int = Int(input("Type the first integer `a`: "))
     var b: Int = Int(input("Type the second integer `b`: "))
-    var c: Pointer[Int, origin = __origin_of(a, b)]
+    var c: Pointer[Int, origin = origin_of(a, b)]
 
     if a < b:
-        c = Pointer[Int, origin = __origin_of(a, b)](to=a)
+        c = Pointer[Int, origin = origin_of(a, b)](to=a)
     else:
-        c = Pointer[Int, origin = __origin_of(a, b)](to=b)
+        c = Pointer[Int, origin = origin_of(a, b)](to=b)
 
     print(
         "The first integer you give is", a, "at address", String(Pointer(to=a))

@@ -7,8 +7,8 @@ def add_lists(a: List[Float64], b: List[Float64]) -> List[Float64]:
 
 
 def main():
-    a = List[Float64](1.0, 2.0, 3.0, 4.0)
-    b = List[Float64](5.0, 6.0, 7.0, 8.0)
+    a: List[Float64] = [1.0, 2.0, 3.0, 4.0]
+    b: List[Float64] = [5.0, 6.0, 7.0, 8.0]
     result = add_lists(a, b)
     for i in result:
         print(i, end=", ")

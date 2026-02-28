@@ -1,6 +1,6 @@
 # src/advanced/ownership/transfer_value_explicitly.mojo
 def main():
-    var a = List[Float64](1.0, 2.0, 3.0, 4.0)
+    var a: List[Float64] = [1.0, 2.0, 3.0, 4.0]
     print(
         "The meta data of the list `a` is stored at address",
         String(Pointer(to=a)),

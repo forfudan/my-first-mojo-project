@@ -18,7 +18,12 @@ def print_list_of_strings(array: List[String]):
 
 
 def main():
-    var my_list_of_floats = List[Float64](0.125, 12.0, 12.625, -2.0, -12.0)
-    var my_list_of_strings = List[String]("Mojo", "is", "awesome")
+    var my_list_of_floats: List[Float64] = [0.125, 12.0, 12.625, -2.0, -12.0]
+    var my_list_of_strings: List[String] = ["Mojo", "is", "awesome"]
+    print("Printing lists directly with built-in print():")
+    print(my_list_of_floats)
+    print(my_list_of_strings)
+    print()
+    print("Printing lists using custom print functions:")
     print_list_of_floats(my_list_of_floats)
     print_list_of_strings(my_list_of_strings)

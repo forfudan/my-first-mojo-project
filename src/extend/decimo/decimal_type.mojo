@@ -1,5 +1,5 @@
-# src/extend/decimojo/decimal_type.mojo
-from decimojo import BigDecimal
+# src/extend/decimo/decimal_type.mojo
+from decimo import BigDecimal
 
 
 def main():

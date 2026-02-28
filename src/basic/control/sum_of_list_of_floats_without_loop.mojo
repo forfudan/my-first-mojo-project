@@ -3,7 +3,7 @@ def main():
     var total = 0.0
     var numbers = [1.1, 2.2, 3.3, 4.4, 5.5]
 
-    var ref number = numbers[0]
+    ref number = numbers[0]
     total += number
     number = numbers[1]
     total += number

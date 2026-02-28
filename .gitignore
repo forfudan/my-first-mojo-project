@@ -20,7 +20,7 @@ kgen*
 .vscode
 .zed
 .helix
-tempCodeRunnerFile.mojo
+tempCodeRunnerFile*
 
 # Temporary files
 *test.mojo
@@ -29,3 +29,4 @@ test*.mojo
 
 # Specific files
 src/mojo2py
+src/apply

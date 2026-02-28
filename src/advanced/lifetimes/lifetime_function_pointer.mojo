@@ -1,11 +1,11 @@
 # src/advanced/lifetimes/lifetime_function_pointer.mojo
 def shorter(
     word1: String, word2: String
-) -> Pointer[String, __origin_of(word1, word2)]:
+) -> Pointer[String, origin_of(word1, word2)]:
     if len(word1) < len(word2):
-        return Pointer[String, __origin_of(word1, word2)](to=word1)
+        return Pointer[String, origin_of(word1, word2)](to=word1)
     else:
-        return Pointer[String, __origin_of(word1, word2)](to=word2)
+        return Pointer[String, origin_of(word1, word2)](to=word2)
 
 
 def main():

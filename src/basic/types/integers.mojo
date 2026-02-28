@@ -9,5 +9,5 @@ def main():
     var g: Int8 = Int8(
         12
     )  # 8-bit Integer from constructor and with type annotation
-    var h = SIMD[DType.index, 1](10)  # Integer with index type
+    var h = SIMD[DType.int, 1](10)  # Integer with index type
     print(a, b, c, d, e, f, g, h)

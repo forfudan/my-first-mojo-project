@@ -7,9 +7,12 @@ version = "20250904"
 
 [tasks]
 test = "bash test.sh"
+verify = "zsh verify.sh"
 
 [dependencies]
-decimojo = "*"
-ipykernel = ">=6.29.5,<7"
-mojo = "==0.25.6"
-python = ">=3.11,<3.14"
+argmojo = ">=0.1.0,<0.2"
+coreutils = ">=9.0"
+decimo = ">=0.8.0,<0.9"
+ipykernel = ">7.0"
+mojo = "==0.26.1"
+python = ">=3.13,<3.14"

@@ -1,4 +1,4 @@
-from decimojo import BigInt
+from decimo import BigInt
 
 
 def main():
