@@ -10,7 +10,7 @@ def main():
     var a: String = String("beautiful")
     var b: String = String("pretty")
 
-    var ref c = shorter(a, b)
+    ref c = shorter(a, b)
 
     print(
         String('The first word you give is "{}" at address {}').format(

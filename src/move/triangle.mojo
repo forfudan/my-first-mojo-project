@@ -1,5 +1,7 @@
-struct Triangle(StringableRaising):
-    """A class to represent a triangle."""
+# src/move/triangle.mojo
+
+struct Triangle(Writable):
+    """A struct to represent a triangle."""
 
     # Declare attributes
     var a: Float64
@@ -15,7 +17,7 @@ struct Triangle(StringableRaising):
             c: Length of side c.
 
         Raises:
-            ValueError: If the lengths do not form a valid triangle.
+            Error: If the lengths do not form a valid triangle.
         """
         self.a = a
         self.b = b
@@ -26,7 +28,9 @@ struct Triangle(StringableRaising):
             or (self.a + self.c <= self.b)
             or (self.b + self.c <= self.a)
         ):
-            raise Error("The lengths of sides do not form a valid triangle.")
+            raise Error(
+                "The lengths of sides do not form a valid triangle."
+            )
 
     def area(self) -> Float64:
         """Calculates the area of the triangle using Heron's formula.
@@ -54,7 +58,7 @@ struct Triangle(StringableRaising):
         Notes:
             You can use the `str()` or `print()` to call this method.
         """
-        return String("Triangle(a={}, b={}, c={})").format(
+        return "Triangle(a={}, b={}, c={})".format(
             self.a, self.b, self.c
         )
 
@@ -64,8 +68,8 @@ def main():
     print("Creating a valid triangle with sides 3, 4, and 5:")
     triangle = Triangle(3, 4, 5)
     print(String(triangle))
-    print(String("Area: {}").format(triangle.area()))
-    print(String("Perimeter: {}").format(triangle.perimeter()))
+    print("Area: {}".format(triangle.area()))
+    print("Perimeter: {}".format(triangle.perimeter()))
 
     # An invalid triangle with sides 1, 2, and 3
     print("\nCreating an invalid triangle with sides 1, 2, and 3:")

@@ -1,10 +1,10 @@
 # src/advanced/lifetimes/lifetime_scenarios_with_comments.mojo
 def main():
-    var a = List[Int](1, 2, 3)  # Lifetime of `a` starts here
+    var a: List[Int] = [1, 2, 3]  # Lifetime of `a` starts here
     var x = String("I am a string.")  # Lifetime of `x` starts here
 
-    var ref b = a  # Lifetime of `b` starts here, sharing `a`
-    var ref y = x  # Lifetime of `y` starts here, sharing `x`
+    ref b = a  # Lifetime of `b` starts here, sharing `a`
+    ref y = x  # Lifetime of `y` starts here, sharing `x`
     var c = Pointer(to=a)  # Lifetime of `c` starts here, pointing to `a`
     var z = Pointer(to=x)  # Lifetime of `z` starts here, pointing to `x`
 

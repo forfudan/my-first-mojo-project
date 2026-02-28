@@ -1,4 +1,6 @@
-# src/move/sort.py
+# src/move/sort_from_py.mojo
+# This code will not compile
+
 def bubble_sort(array):
     n = len(array)
     for i in range(n):
@@ -12,6 +14,3 @@ def main():
     print("Input array:", array)
     bubble_sort(array)
     print("After sorting:", array)
-
-
-main()

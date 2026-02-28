@@ -1,3 +1,7 @@
+# src/move/triangle_from_py.mojo
+# Adapted from Python code with preliminary changes
+# It won't compile yet
+
 class Triangle:
     """A class to represent a triangle."""
 
@@ -51,7 +55,7 @@ class Triangle:
         Notes:
             You can use the `str()` or `print()` to call this method.
         """
-        return String("Triangle(a={}, b={}, c={})").format(
+        return "Triangle(a={}, b={}, c={})".format(
             self.a, self.b, self.c
         )
 
@@ -61,8 +65,8 @@ def main():
     print("Creating a valid triangle with sides 3, 4, and 5:")
     triangle = Triangle(3, 4, 5)
     print(triangle)
-    print(String("Area: {}").format(triangle.area()))
-    print(String("Perimeter: {}").format(triangle.perimeter()))
+    print("Area: {}".format(triangle.area()))
+    print("Perimeter: {}".format(triangle.perimeter()))
 
     # An invalid triangle with sides 1, 2, and 3
     print("\nCreating an invalid triangle with sides 1, 2, and 3:")

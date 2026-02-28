@@ -1,4 +1,5 @@
 # src/basic/variables/move_between_variables_errors.mojo
+# This code will compile but with warnings
 def main():
     var a = 1
     var b = a^  # Move the value of `a` into a new variable `b`

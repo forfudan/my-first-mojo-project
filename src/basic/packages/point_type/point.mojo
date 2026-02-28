@@ -10,11 +10,11 @@ from memory import UnsafePointer
 import math
 
 # ===----------------------------------------------------------------------=== #
-# Aliases (known at compiled time)
+# Type or value aliases known at compiled time
 # ===----------------------------------------------------------------------=== #
-alias FourByteFloat = SIMD[DType.float64, 1]
+comptime FourByteFloat = SIMD[DType.float64, 1]
 """Alias for a 4-byte float (double precision)."""
-alias PI = 3.14159
+comptime PI = 3.14159
 """Alias for the mathematical constant pi (π)."""
 
 # ===----------------------------------------------------------------------=== #

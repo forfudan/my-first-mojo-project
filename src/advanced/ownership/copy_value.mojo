@@ -3,7 +3,7 @@ from memory import Pointer
 
 
 def main():
-    var a = List[Float64](1.0, 2.0, 3.0, 4.0)
+    var a: List[Float64] = [1.0, 2.0, 3.0, 4.0]
     print("a at address", String(Pointer(to=a)), "with values:")
     for i in a:
         print(i, end=", ")

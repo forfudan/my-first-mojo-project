@@ -5,5 +5,5 @@ fn changeit(read some: List[Int]) -> List[Int]:
 
 
 fn main():
-    var a = List[Int](1, 2, 3, 4, 5)
+    var a = [1, 2, 3, 4, 5]  # Auto inferred as List[Int]
     changeit(a)
