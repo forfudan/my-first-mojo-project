@@ -6,7 +6,6 @@
 
 # pixi environments
 .pixi
-pixi.lock
 *.egg-info
 
 # Mojo temp files
