@@ -1,6 +1,6 @@
-fn main():
+def main():
     check(5)
 
 
-fn check(borroweda: Int8):
+def check(borroweda: Int8):
     print(a)

@@ -6,10 +6,10 @@ struct Team(ImplicitlyCopyable):
         # Copy the incoming names into the List
         self.names = List[String](elements=names^)
 
-    fn __copyinit__(out self, other: Self):
+    def __copyinit__(out self, other: Self):
         self.names = other.names.copy()
 
-    fn __moveinit__(out self, deinit other: Self):
+    def __moveinit__(out self, deinit other: Self):
         self.names = other.names^
         # When move, add another person
         self.names.append("Yuhao")

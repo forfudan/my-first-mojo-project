@@ -3,7 +3,7 @@
 from python import Python
 
 
-def main():
+def main() raises:
     var np = Python.import_module("numpy")
     var array_str = "1, 2, 3, 4, 5, 6, 7, 8, 9, 10"
     var a = np.fromstring(array_str, sep=",").reshape(5, 2)

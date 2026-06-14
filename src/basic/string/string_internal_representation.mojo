@@ -1,4 +1,4 @@
-fn main():
+def main():
     var s = String("你好shìjiè😀🇨🇳")
     var idx = 0
     print("Index | Binary       | Decimal | Hexadecimal")

@@ -1,8 +1,8 @@
-fn main():
+def main():
     print(demo.__doc__())
 
 
-fn demo():
+def demo():
     """
     This is a docstring for the demo function.
 

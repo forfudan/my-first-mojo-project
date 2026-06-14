@@ -1,12 +1,12 @@
 # src/basic/errors/propagate_errors.mojo
-fn divide(x: Float64, y: Float64) raises -> Float64:
+def divide(x: Float64, y: Float64) raises -> Float64:
     if y == 0:
         raise Error("Error in `divide()`: Cannot divide by zero")
     else:
         return x // y
 
 
-fn area_when_radius_is_ratio(a: Float64, b: Float64) raises -> Float64:
+def area_when_radius_is_ratio(a: Float64, b: Float64) raises -> Float64:
     var pi: Float64 = 3.14159
     var radius: Float64
 
@@ -23,7 +23,7 @@ fn area_when_radius_is_ratio(a: Float64, b: Float64) raises -> Float64:
     return radius**2 * pi
 
 
-fn main() raises:
+def main() raises:
     print(
         "This program calculates the area of a circle when the radius equals"
         " a / b"

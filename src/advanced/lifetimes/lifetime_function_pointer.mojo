@@ -8,7 +8,7 @@ def shorter(
         return Pointer[String, origin_of(word1, word2)](to=word2)
 
 
-def main():
+def main() raises:
     var a: String = String("beautiful")
     var b: String = String("pretty")
 

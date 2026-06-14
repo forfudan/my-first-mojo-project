@@ -4,7 +4,7 @@ from python import Python
 from decimo import BInt  # For verification
 
 
-def main():
+def main() raises:
     var py_int = Python.int(43)
     print("43^43 with Python's int:\n", py_int**py_int, end="\n\n", sep="")
 

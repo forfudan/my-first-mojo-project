@@ -1,5 +1,6 @@
-# src/miji/basic/control/
-# loop_over_iterators_with_for.mojo
+# src/miji/basic/control/loop_over_iterators_with_for.mojo
+
+
 def main():
     var iterator = range(10)
 

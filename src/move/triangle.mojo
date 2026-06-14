@@ -1,5 +1,6 @@
 # src/move/triangle.mojo
 
+
 struct Triangle(Writable):
     """A struct to represent a triangle."""
 
@@ -8,7 +9,7 @@ struct Triangle(Writable):
     var b: Float64
     var c: Float64
 
-    def __init__(out self, a: Float64, b: Float64, c: Float64):
+    def __init__(out self, a: Float64, b: Float64, c: Float64) raises:
         """Initializes a triangle with three sides.
 
         Args:
@@ -28,9 +29,7 @@ struct Triangle(Writable):
             or (self.a + self.c <= self.b)
             or (self.b + self.c <= self.a)
         ):
-            raise Error(
-                "The lengths of sides do not form a valid triangle."
-            )
+            raise Error("The lengths of sides do not form a valid triangle.")
 
     def area(self) -> Float64:
         """Calculates the area of the triangle using Heron's formula.
@@ -49,7 +48,7 @@ struct Triangle(Writable):
         """
         return self.a + self.b + self.c
 
-    def __str__(self) -> String:
+    def __str__(self) raises -> String:
         """Returns a string representation of the triangle.
 
         Returns:
@@ -58,12 +57,10 @@ struct Triangle(Writable):
         Notes:
             You can use the `str()` or `print()` to call this method.
         """
-        return "Triangle(a={}, b={}, c={})".format(
-            self.a, self.b, self.c
-        )
+        return "Triangle(a={}, b={}, c={})".format(self.a, self.b, self.c)
 
 
-def main():
+def main() raises:
     # A valid triangle with sides 3, 4, and 5
     print("Creating a valid triangle with sides 3, 4, and 5:")
     triangle = Triangle(3, 4, 5)

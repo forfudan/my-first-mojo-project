@@ -2,7 +2,7 @@
 # This will not compile
 
 
-fn main():
+def main():
     var a = String("Hello, Python!")
     var b = String("Hello, Mojo!")
     var c = Pointer[type=String, origin = origin_of(a)](to=a)

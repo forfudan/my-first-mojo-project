@@ -3,7 +3,7 @@ trait Animal:
     def get_name(self) -> String:
         ...
 
-    def speech(self) -> String:
+    def speech(self) raises -> String:
         ...
 
 
@@ -23,7 +23,7 @@ struct Cat(Animal, Measurable):
     def get_name(self) -> String:
         return self.name
 
-    def speech(self) -> String:
+    def speech(self) raises -> String:
         return String("Meow! I love {}.").format(self.food)
 
     def length(self) -> Int:
@@ -41,7 +41,7 @@ struct Bird(Animal, Measurable):
     def get_name(self) -> String:
         return self.name
 
-    def speech(self) -> String:
+    def speech(self) raises -> String:
         return String("Bugubugu! I love {}.").format(self.food)
 
     def length(self) -> Int:
@@ -59,19 +59,19 @@ struct Human(Animal, Measurable):
     def get_name(self) -> String:
         return self.name
 
-    def speech(self) -> String:
+    def speech(self) raises -> String:
         return String("Hi! I love {}.").format(self.food)
 
     def length(self) -> Int:
         return len(self.name) + len(self.food)
 
 
-def who_says_what[T: Animal & Measurable](animal: T):
+def who_says_what[T: Animal & Measurable](animal: T) raises:
     print(animal.get_name(), "says:", animal.speech())
     print("The mysterious number of me is: ", animal.length())
 
 
-def main():
+def main() raises:
     saku = Cat("Saku", "chicken")
     bili = Bird("Bili", "worms")
     yuhao = Human(

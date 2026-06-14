@@ -2,7 +2,7 @@
 import benchmark
 
 
-fn plain_iterations[iter: Int, a: SIMD[DType.float64, 8]]():
+def plain_iterations[iter: Int, a: SIMD[DType.float64, 8]]():
     result = SIMD[DType.float64, 8](0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
     for _i in range(iter):
         for _j in range(8):
@@ -11,7 +11,7 @@ fn plain_iterations[iter: Int, a: SIMD[DType.float64, 8]]():
     return
 
 
-fn simd_operation[iter: Int, a: SIMD[DType.float64, 8]]():
+def simd_operation[iter: Int, a: SIMD[DType.float64, 8]]():
     result = SIMD[DType.float64, 8](0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
     for _ in range(iter):
         result += a
@@ -19,7 +19,7 @@ fn simd_operation[iter: Int, a: SIMD[DType.float64, 8]]():
     return
 
 
-fn main() raises:
+def main() raises:
     comptime a = SIMD[DType.float64, 8](1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0)
     comptime iter = Int(10_000_000)
 

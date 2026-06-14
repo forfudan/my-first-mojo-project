@@ -1,12 +1,12 @@
 # src/basic/errors/handle_errors_another_example.mojo
-fn divide(x: Int, y: Int) raises -> Int:
+def divide(x: Int, y: Int) raises -> Int:
     if y == 0:
         raise Error("Cannot divide by zero")
     else:
         return x // y
 
 
-fn main() raises:
+def main() raises:
     var a = 10
     var b = 2
     var result: Int

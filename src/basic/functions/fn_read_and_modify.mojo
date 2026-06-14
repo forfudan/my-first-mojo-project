@@ -1,4 +1,4 @@
-fn change_value_in_fn(x: Int):
+def change_value_in_fn(x: Int):
     x = 2
     print(x)
 

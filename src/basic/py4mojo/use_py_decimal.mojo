@@ -4,7 +4,7 @@ from python import Python
 import decimo  # Pure Mojo implementation
 
 
-def main():
+def main() raises:
     var decimal = Python.import_module("decimal")
     decimal.getcontext().prec = 36  # Set precision to 36 decimal places
     var py_pi = decimal.Decimal("3.1415926535897932384626433832795028841971")

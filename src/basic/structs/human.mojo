@@ -1,5 +1,5 @@
 # src/basic/structs/human.mojo
-from memory import UnsafePointer
+from std.memory import UnsafePointer
 
 
 struct Human:
@@ -10,7 +10,7 @@ struct Human:
     var height: Float16
     var date: List[UInt16]
 
-    fn __init__(
+    def __init__(
         out self,
         name: String,
         age: UInt8,
@@ -24,7 +24,7 @@ struct Human:
         self.date = date^
 
 
-fn main():
+def main():
     var human = Human(
         "Yuhao Zihong Mengzexianke Xianyong Zhu",
         124,

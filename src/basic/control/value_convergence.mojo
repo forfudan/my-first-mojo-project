@@ -1,5 +1,5 @@
 # src/basic/controls/value_convergence.mojo
-fn value_convergence(
+def value_convergence(
     var value: Float64,
     tolerance: Float64 = 0.01,
 ) -> Float64:
@@ -9,5 +9,5 @@ fn value_convergence(
     return value
 
 
-fn main():
+def main():
     print("Converged value:", value_convergence(100.0, tolerance=0.0001))

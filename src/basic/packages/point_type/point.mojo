@@ -6,7 +6,7 @@ A example module containing a `Point` struct and related structs and functions.
 # ===----------------------------------------------------------------------=== #
 # Imports
 # ===----------------------------------------------------------------------=== #
-from memory import UnsafePointer
+from std.memory import UnsafePointer
 import math
 
 # ===----------------------------------------------------------------------=== #
@@ -22,12 +22,12 @@ comptime PI = 3.14159
 # ===----------------------------------------------------------------------=== #
 
 
-fn print_address(a: Point):
+def print_address(a: Point):
     var ptr = UnsafePointer(to=a)
     print("Memory address of the point:", String(ptr))
 
 
-fn distance[T: Distanceable](item: T) -> EightByteFloat:
+def distance[T: Distanceable](item: T) -> EightByteFloat:
     """Calculates the distance."""
     return item.__distance__()
 
@@ -36,7 +36,7 @@ fn distance[T: Distanceable](item: T) -> EightByteFloat:
 # Traits
 # ===----------------------------------------------------------------------=== #
 trait Distanceable:
-    fn __distance__(self) -> Float64:
+    def __distance__(self) -> Float64:
         ...
 
 
@@ -49,14 +49,14 @@ struct Point(Distanceable):
     var x: EightByteFloat
     var y: EightByteFloat
 
-    fn __init__(out self, x: EightByteFloat, y: EightByteFloat):
+    def __init__(out self, x: EightByteFloat, y: EightByteFloat):
         self.x = x
         self.y = y
 
-    fn __distance__(self) -> EightByteFloat:
+    def __distance__(self) -> EightByteFloat:
         """Calculates the distance from the origin (0, 0)."""
         return math.sqrt(self.x * self.x + self.y * self.y)
 
-    fn area(self) -> EightByteFloat:
+    def area(self) -> EightByteFloat:
         """Calculates the area of a circle with this point as the radius."""
         return PI * distance(self) * distance(self)

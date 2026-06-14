@@ -1,5 +1,5 @@
 # src/advanced/ownership/copy_value.mojo
-from memory import Pointer
+from std.memory import Pointer
 
 
 def main():

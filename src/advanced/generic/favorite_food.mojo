@@ -10,7 +10,7 @@ struct Cat:
     def get_name(self) -> String:
         return self.name
 
-    def speech(self) -> String:
+    def speech(self) raises -> String:
         return String("Meow! I love {}.").format(self.food)
 
 
@@ -25,7 +25,7 @@ struct Bird:
     def get_name(self) -> String:
         return self.name
 
-    def speech(self) -> String:
+    def speech(self) raises -> String:
         return String("Bugubugu! I love {}.").format(self.food)
 
 
@@ -40,23 +40,23 @@ struct Human:
     def get_name(self) -> String:
         return self.name
 
-    def speech(self) -> String:
+    def speech(self) raises -> String:
         return String("Hi! I love {}.").format(self.food)
 
 
-def cat_says_what(animal: Cat):
+def cat_says_what(animal: Cat) raises:
     print(animal.get_name(), "says:", animal.speech())
 
 
-def bird_says_what(animal: Bird):
+def bird_says_what(animal: Bird) raises:
     print(animal.get_name(), "says:", animal.speech())
 
 
-def human_says_what(animal: Human):
+def human_says_what(animal: Human) raises:
     print(animal.get_name(), "says:", animal.speech())
 
 
-def main():
+def main() raises:
     saku = Cat("Saku", "chicken")
     bili = Bird("Bili", "worms")
     yuhao = Human(
