@@ -3,7 +3,7 @@
 from python import Python
 
 
-def main():
+def main() raises:
     var py = Python.import_module("builtins")
     var py_max = py.max(3, 5, 2, 8, 1)  # Call Python's built-in max function
     print(

@@ -1,8 +1,8 @@
-fn return_error() -> Error:
+def return_error() -> Error:
     return Error("This is an error message")
 
 
-fn main():
+def main():
     try:
         print(return_error())
         print("No exception raised")

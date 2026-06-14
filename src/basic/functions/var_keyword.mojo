@@ -1,8 +1,8 @@
 # src/basic/functions/var_keyword.mojo
-from memory import Pointer
+from std.memory import Pointer
 
 
-def changeit(var a: Int8):
+def changeit(var a: Int8) raises:
     print(
         String(
             "Within function call: argument `a` is of the value {} and the"
@@ -19,7 +19,7 @@ def changeit(var a: Int8):
     )
 
 
-def main():
+def main() raises:
     var x: Int8 = 5
     print(
         String(

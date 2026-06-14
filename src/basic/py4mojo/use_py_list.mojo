@@ -3,7 +3,7 @@
 from python import Python
 
 
-def main():
+def main() raises:
     var py_str = Python.str("Hello, Python!")
     print("Python's str:\n", py_str, end="\n\n", sep="")
 

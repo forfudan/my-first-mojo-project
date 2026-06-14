@@ -1,22 +1,18 @@
 # src/advanced/generic/pixel.mojo
-struct Pixel(Stringable):
+
+
+struct Pixel(Writable):
     var x: Int
     var y: Int
 
-    fn __init__(out self, x: Int, y: Int):
+    def __init__(out self, x: Int, y: Int):
         self.x = x
         self.y = y
 
-    fn __str__(self) -> String:
-        return (
-            String("Pixel(")
-            + String(self.x)
-            + String(", ")
-            + String(self.y)
-            + String(")")
-        )
+    def write_to[T: Writer](self, mut writer: T):
+        writer.write("Pixel(", self.x, ", ", self.y, ")")
 
-    fn __add__(self, other: Pixel) -> Pixel:
+    def __add__(self, other: Pixel) -> Pixel:
         return Pixel(self.x**2 + other.x**2, self.y**2 + other.y**2)
 
 

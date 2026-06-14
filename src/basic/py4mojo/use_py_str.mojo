@@ -3,7 +3,7 @@
 from python import Python
 
 
-def main():
+def main() raises:
     var py_str = Python.str("Hello, Python! 你好，蟒蛇！")
     print("Python's str, iterate and print each character:")
     for i in py_str:

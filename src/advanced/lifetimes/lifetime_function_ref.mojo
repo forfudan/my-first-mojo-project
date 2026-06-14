@@ -1,12 +1,12 @@
 # src/advanced/lifetimes/lifetime_function_ref.mojo
-def shorter(a: String, b: String) -> ref [a, b] String:
+def shorter(a: String, b: String) -> ref[a, b] String:
     if len(a) < len(b):
         return a
     else:
         return b
 
 
-def main():
+def main() raises:
     var a: String = String("beautiful")
     var b: String = String("pretty")
 

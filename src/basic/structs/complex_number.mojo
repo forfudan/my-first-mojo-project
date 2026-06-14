@@ -7,7 +7,7 @@ struct Complex(Writable):
     var imag: Float64
     """Imaginary part of the complex number."""
 
-    fn __init__(out self, real: Float64 = 0.0, imag: Float64 = 0.0):
+    def __init__(out self, real: Float64 = 0.0, imag: Float64 = 0.0):
         """Initializes a complex number with real and imaginary parts.
 
         Args:
@@ -17,29 +17,29 @@ struct Complex(Writable):
         self.real = real
         self.imag = imag
 
-    fn write_to[T: Writer](self, mut writer: T):
+    def write_to[T: Writer](self, mut writer: T):
         """Writes the complex number to a writer."""
         if self.imag < 0:
             writer.write(self.real, self.imag, "i")
         else:
             writer.write(self.real, "+", self.imag, "i")
 
-    fn __add__(self, other: Self) -> Self:
+    def __add__(self, other: Self) -> Self:
         """Adds two complex numbers."""
         return Complex(self.real + other.real, self.imag + other.imag)
 
-    fn __sub__(self, other: Self) -> Self:
+    def __sub__(self, other: Self) -> Self:
         """Subtracts two complex numbers."""
         return Complex(self.real - other.real, self.imag - other.imag)
 
-    fn __mul__(self, other: Self) -> Self:
+    def __mul__(self, other: Self) -> Self:
         """Multiplies two complex numbers."""
         return Complex(
             self.real * other.real - self.imag * other.imag,
             self.real * other.imag + self.imag * other.real,
         )
 
-    fn __truediv__(self, other: Self) raises -> Self:
+    def __truediv__(self, other: Self) raises -> Self:
         """Divides two complex numbers."""
         var denominator: Float64 = (
             other.real * other.real + other.imag * other.imag
@@ -52,7 +52,7 @@ struct Complex(Writable):
         )
 
 
-fn main() raises:
+def main() raises:
     var c1 = Complex(3.0, 4.0)
     var c2 = Complex(1.0, -2.0)
     var c3 = Complex()
@@ -69,4 +69,7 @@ fn main() raises:
     print("c1 + c3 =", c1 + c3)
     print("c1 - c3 =", c1 - c3)
     print("c1 * c3 =", c1 * c3)
-    print("c1 / c3 =:", c1 / c3)
+    try:
+        print("c1 / c3 =:", c1 / c3)
+    except e:
+        print("c1 / c3 raised:", e)

@@ -39,21 +39,38 @@ fi
 typeset -A EXPECT_FAIL
 EXPECT_FAIL=(
     [src/basic/copy/implicit_copy_between_variables_errors.mojo]=1
-    [src/basic/copy/move_between_variables_errors.mojo]=1
     [src/basic/types/incompatible_literal_type_and_annotation.mojo]=1
     [src/basic/types/integer_exercise_fix_operations.mojo]=1
     [src/basic/types/integer_operations_on_incompatible_types.mojo]=1
+    [src/basic/types/boolean_implicit_conversion_to_int.mojo]=1
     [src/basic/control/non_exhaustive_conditional.mojo]=1
+    [src/basic/composite/list_assignment_with_only_equal_sign.mojo]=1
+    [src/basic/composite/list_comprehension_print.mojo]=1
+    [src/basic/docstring/docstring.mojo]=1
     [src/basic/errors/unhandled_error.mojo]=1
     [src/basic/errors/raise_a_string.mojo]=1
     [src/basic/errors/unhandled_error_with_raises_keyword.mojo]=1
-    [src/basic/variables/variable_creation_without_var_but_with_types.mojo]=1
     [src/basic/functions/keywords_deprecation.mojo]=1
+    [src/basic/functions/def_read_and_modify.mojo]=1
+    [src/basic/functions/fn_read_and_modify.mojo]=1
+    [src/basic/functions/read_keyword_change.mojo]=1
     [src/basic/composite/list_iteration_before_mojo_v25d4.mojo]=1
-    [src/advanced/ownership/transfer_ownership_via_reference.mojo]=1
+    [src/basic/string/f_string.mojo]=1
+    [src/basic/variables/redefinition.mojo]=1
+    [src/basic/variables/reassign_values_with_different_types.mojo]=1
+    [src/basic/variables/scope_of_for_loop_variable.mojo]=1
+    [src/basic/variables/use_variables_of_sub_scopes.mojo]=1
     [src/advanced/ownership/transfer_value_and_use_again.mojo]=1
     [src/advanced/ownership/lifetime_owner_reference.mojo]=1
+    [src/advanced/ownership/destroy_value.mojo]=1
+    [src/advanced/ownership/copy_move_inconsistency.mojo]=1
+    [src/advanced/ownership/copy_move_inconsistency_explicit_copy.mojo]=1
+    [src/advanced/ownership/copy_move_inconsistency_use_again.mojo]=1
+    [src/advanced/references/transfer_ownership_via_reference.mojo]=1
     [src/advanced/lifetimes/combined_lifetime_wrong.mojo]=1
+    [src/advanced/lifetimes/copy_values_of_different_origins.mojo]=1
+    [src/move/sort_from_py.mojo]=1
+    [src/move/triangle_from_py.mojo]=1
 )
 
 # ── Skip list ────────────────────────────────────────────────────────

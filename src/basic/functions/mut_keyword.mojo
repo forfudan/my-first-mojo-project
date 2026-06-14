@@ -1,8 +1,8 @@
 # src/basic/functions/mut_keyword.mojo
-from memory import Pointer
+from std.memory import Pointer
 
 
-def changeit(mut a: Int8):
+def changeit(mut a: Int8) raises:
     a = 10
     print(
         String(
@@ -12,7 +12,7 @@ def changeit(mut a: Int8):
     )
 
 
-def main():
+def main() raises:
     var x: Int8 = 5
     print(
         String(

@@ -3,7 +3,7 @@ trait Animal:
     def get_name(self) -> String:
         ...
 
-    def speech(self) -> String:
+    def speech(self) raises -> String:
         ...
 
 
@@ -18,7 +18,7 @@ struct Cat(Animal):  # Explicitly specify that Cat implements the Animal trait
     def get_name(self) -> String:
         return self.name
 
-    def speech(self) -> String:
+    def speech(self) raises -> String:
         return String("Meow! I love {}.").format(self.food)
 
 
@@ -33,7 +33,7 @@ struct Bird(Animal):  # Explicitly specify that Bird implements the Animal trait
     def get_name(self) -> String:
         return self.name
 
-    def speech(self) -> String:
+    def speech(self) raises -> String:
         return String("Bugubugu! I love {}.").format(self.food)
 
 
@@ -50,15 +50,15 @@ struct Human(
     def get_name(self) -> String:
         return self.name
 
-    def speech(self) -> String:
+    def speech(self) raises -> String:
         return String("Hi! I love {}.").format(self.food)
 
 
-def who_says_what[CertainType: Animal](animal: CertainType):
+def who_says_what[CertainType: Animal](animal: CertainType) raises:
     print(animal.get_name(), "says:", animal.speech())
 
 
-def main():
+def main() raises:
     saku = Cat("Saku", "chicken")
     bili = Bird("Bili", "worms")
     yuhao = Human(

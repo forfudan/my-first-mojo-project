@@ -1,5 +1,5 @@
 # src/basic/control/value_not_converging_but_break_after_some_steps.mojo
-fn value_convergence(var value: Float64, tolerance: Float64 = 0.01) -> Float64:
+def value_convergence(var value: Float64, tolerance: Float64 = 0.01) -> Float64:
     var counter = 0
     var max_steps = 100
     while value >= tolerance:
@@ -13,5 +13,5 @@ fn value_convergence(var value: Float64, tolerance: Float64 = 0.01) -> Float64:
     return value
 
 
-fn main():
+def main():
     print("Converged value:", value_convergence(100.0, tolerance=0.0001))

@@ -4,7 +4,7 @@ from point_type import point
 from point_type.point import Point
 
 
-fn main() raises:
+def main() raises:
     var x: Float64 = 3.0
     var y: Float64 = 4.0
 

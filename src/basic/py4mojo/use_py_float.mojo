@@ -3,7 +3,7 @@
 from python import Python
 
 
-def main():
+def main() raises:
     var py_float = Python.float(200.808) / Python.float(12.34)
     print(
         "200.808 / 12.34 with Python's float:\n",
