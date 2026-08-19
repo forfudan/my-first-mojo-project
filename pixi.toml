@@ -11,8 +11,9 @@ verify = "zsh verify.sh"
 
 [dependencies]
 coreutils = ">=9.0"
-decimo = "==0.10.0"
+decimo = ">=0.12.0, <0.13.0"
+argmojo = ">=0.8.0, <0.9.0"
 ipykernel = ">7.0"
-mojo = "==1.0.0b1"
+mojo = ">=1.0.0, <1.1.0" # Mojo language compiler and runtime
 numpy = ">=2.4.2,<3"
 python = ">=3.13,<3.14"

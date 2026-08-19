@@ -43,9 +43,9 @@ struct Human(Talkative):
 
 
 def main():
-    saku = Cat("Saku", "chicken")
-    bili = Bird("Bili", "worms")
-    yuhao = Human(
+    var saku = Cat("Saku", "chicken")
+    var bili = Bird("Bili", "worms")
+    var yuhao = Human(
         "Yuhao",
         "生煎包 (sanci moedeu)",
     )

@@ -63,7 +63,7 @@ def print_calendar(year: Int) -> None:
             print("└", "─" * 37, "┘", sep="")
 
 
-def main():
+def main() raises:
     while True:
         var year = Int(
             input("Enter a year (after 1582) to print its calendar: ")

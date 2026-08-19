@@ -2,7 +2,7 @@
 from decimo import BigDecimal
 
 
-def main():
+def main() raises:
     var a = BigDecimal("1.23456789")
     var b = BigDecimal("3.1415926")
 

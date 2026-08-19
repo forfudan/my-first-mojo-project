@@ -4,13 +4,15 @@ struct Team(ImplicitlyCopyable):
 
     def __init__(out self, var *names: String):
         # Copy the incoming names into the List
-        self.names = List[String](elements=names^)
+        self.names = List[String]()
+        for name in names^:
+            self.names.append(name)
 
-    def __copyinit__(out self, other: Self):
-        self.names = other.names.copy()
+    def __init__(out self, *, copy: Self):
+        self.names = copy.names.copy()
 
-    def __moveinit__(out self, deinit other: Self):
-        self.names = other.names^
+    def __init__(out self, *, deinit move: Self):
+        self.names = move.names^
         # When move, add another person
         self.names.append("Yuhao")
 

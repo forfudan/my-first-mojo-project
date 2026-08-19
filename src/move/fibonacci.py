@@ -6,7 +6,7 @@ def fib(n: int) -> int:
     return fib(n - 1) + fib(n - 2)
 
 def main():
-    for i in range(50):
+    for i in range(40):
         print(fib(i), end=", ")
 
 t0 = time.time()

@@ -2,7 +2,7 @@
 def main():
     var prev = 0
     var curr = 1
-    threshold = 1_000_000_000
+    var threshold = 1_000_000_000
 
     while True:
         prev, curr = curr, prev + curr

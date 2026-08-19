@@ -4,7 +4,7 @@ def print_sentence(sentence: String, times: Int):
         print(sentence)
 
 
-def main():
+def main() raises:
     var first_sentence = String(input("Please enter the first sentence: "))
     print_sentence(first_sentence, times=2)
 

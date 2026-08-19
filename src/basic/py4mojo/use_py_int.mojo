@@ -1,6 +1,6 @@
 # src/basic/py4mojo/use_py_int.mojo
 
-from python import Python
+from std.python import Python
 from decimo import BInt  # For verification
 
 

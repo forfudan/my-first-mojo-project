@@ -1,7 +1,7 @@
 # src/advanced/references/return_as_pointer.mojo
 def return_first_element_as_pointer(
     mut a: List[String],
-) raises -> Pointer[String, origin_of(a)]:
+) raises -> Pointer[String, origin_of(a[0])]:
     if len(a) == 0:
         raise Error("List is empty.")
     else:

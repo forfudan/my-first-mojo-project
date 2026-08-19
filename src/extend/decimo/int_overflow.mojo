@@ -1,7 +1,7 @@
 from decimo import BigInt
 
 
-def main():
+def main() raises:
     var a = Int(1234567890123456789)
     var b = Int(12)
     print(a, "*", b, "=", BigInt(a) * BigInt(b))

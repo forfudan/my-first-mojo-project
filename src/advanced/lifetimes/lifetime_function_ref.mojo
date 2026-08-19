@@ -1,6 +1,6 @@
 # src/advanced/lifetimes/lifetime_function_ref.mojo
 def shorter(a: String, b: String) -> ref[a, b] String:
-    if len(a) < len(b):
+    if a.byte_length() < b.byte_length():
         return a
     else:
         return b

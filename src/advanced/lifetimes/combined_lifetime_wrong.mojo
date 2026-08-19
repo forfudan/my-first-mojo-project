@@ -1,6 +1,6 @@
 # src/advanced/lifetimes/combined_lifetime_wrong.mojo
 # This code will not compile
-def main():
+def main() raises:
     var a: Int = Int(input("Type the first integer `a`: "))
     var b: Int = Int(input("Type the second integer `b`: "))
     var c: Pointer[Int]

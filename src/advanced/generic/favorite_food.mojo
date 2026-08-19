@@ -57,9 +57,9 @@ def human_says_what(animal: Human) raises:
 
 
 def main() raises:
-    saku = Cat("Saku", "chicken")
-    bili = Bird("Bili", "worms")
-    yuhao = Human(
+    var saku = Cat("Saku", "chicken")
+    var bili = Bird("Bili", "worms")
+    var yuhao = Human(
         "Yuhao",
         (
             "生煎包 (sanci moedeu), a pan-fried baozi which is popular in Shanghai"

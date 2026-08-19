@@ -1,5 +1,5 @@
 # src/basic/control/give_commands_with_while.mojo
-def main():
+def main() raises:
     while True:
         var input = input(
             "Please enter one of the following commands:\n(1) hi\n(2) who\n(3)"

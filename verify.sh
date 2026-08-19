@@ -1,14 +1,16 @@
 #!/usr/bin/env zsh
 # verify.sh — Mojo Miji Tutorial Syntax Verification
 #
-# Runs all .mojo files under src/{start,move,basic,advanced} to check
-# whether they still work with the current version of Mojo.
+# Runs every .mojo file under src/ to check whether it still works with the
+# current version of Mojo, and reports files that compile but emit deprecation
+# warnings.
 #
 # Usage:  pixi run verify
 #
 # Exit code:
-#   0  — no unexpected failures
-#   1  — at least one file that should pass actually failed
+#   0  — no unexpected failures and no unexpected warnings
+#   1  — at least one file that should pass actually failed,
+#        or at least one file emitted an unexpected warning
 
 setopt NO_ERR_EXIT  # don't exit on error
 
@@ -45,7 +47,6 @@ EXPECT_FAIL=(
     [src/basic/types/boolean_implicit_conversion_to_int.mojo]=1
     [src/basic/control/non_exhaustive_conditional.mojo]=1
     [src/basic/composite/list_assignment_with_only_equal_sign.mojo]=1
-    [src/basic/composite/list_comprehension_print.mojo]=1
     [src/basic/docstring/docstring.mojo]=1
     [src/basic/errors/unhandled_error.mojo]=1
     [src/basic/errors/raise_a_string.mojo]=1
@@ -56,6 +57,8 @@ EXPECT_FAIL=(
     [src/basic/functions/read_keyword_change.mojo]=1
     [src/basic/composite/list_iteration_before_mojo_v25d4.mojo]=1
     [src/basic/string/f_string.mojo]=1
+    [src/basic/string/string_positional_indexing.mojo]=1
+    [src/basic/string/string_len.mojo]=1
     [src/basic/variables/redefinition.mojo]=1
     [src/basic/variables/reassign_values_with_different_types.mojo]=1
     [src/basic/variables/scope_of_for_loop_variable.mojo]=1
@@ -63,9 +66,6 @@ EXPECT_FAIL=(
     [src/advanced/ownership/transfer_value_and_use_again.mojo]=1
     [src/advanced/ownership/lifetime_owner_reference.mojo]=1
     [src/advanced/ownership/destroy_value.mojo]=1
-    [src/advanced/ownership/copy_move_inconsistency.mojo]=1
-    [src/advanced/ownership/copy_move_inconsistency_explicit_copy.mojo]=1
-    [src/advanced/ownership/copy_move_inconsistency_use_again.mojo]=1
     [src/advanced/references/transfer_ownership_via_reference.mojo]=1
     [src/advanced/lifetimes/combined_lifetime_wrong.mojo]=1
     [src/advanced/lifetimes/copy_values_of_different_origins.mojo]=1
@@ -73,11 +73,29 @@ EXPECT_FAIL=(
     [src/move/triangle_from_py.mojo]=1
 )
 
+# ── Expected warnings ────────────────────────────────────────────────
+# The warning gate below only looks at *deprecation* warnings, i.e. syntax that
+# Mojo is phasing out. Style hints ("assignment never used", "'except' logic is
+# unreachable", …) are ignored: a teaching example triggers them on purpose.
+#
+# Files listed here *deliberately* use deprecated syntax, because the Miji shows
+# them to explain what older code looks like. They must still compile; their
+# deprecation warnings are expected and are not reported.
+typeset -A EXPECT_WARN
+EXPECT_WARN=(
+    [src/basic/variables/variable_creation_without_var.mojo]=1
+    [src/basic/variables/variable_creation_without_var_but_with_types.mojo]=1
+    [src/move/sort_from_py.mojo]=1
+    [src/move/triangle_from_py.mojo]=1
+)
+
 # ── Skip list ────────────────────────────────────────────────────────
-# Files that cannot be run in an automated (non-interactive) setting:
+# Files that cannot be *run* in an automated (non-interactive) setting:
 #   - uses input()        → hangs waiting for stdin
 #   - infinite loop       → never terminates
 #   - no main function    → package / module file
+# They are still *compiled*, so that they cannot silently rot when the
+# language changes.
 typeset -A SKIP
 SKIP=(
     [src/basic/control/value_not_converging.mojo]=1
@@ -93,11 +111,14 @@ SKIP=(
     [src/advanced/parameterization/print_sentences_argument.mojo]=1
     [src/advanced/parameterization/print_sentences_parameter.mojo]=1
     [src/advanced/simd/simd_performance_benchmark.mojo]=1
+    [src/apply/snake/board.mojo]=1
+    [src/apply/snake/game.mojo]=1
+    [src/apply/snake/snake.mojo]=1
+    [src/mojo2py/mojo_module.mojo]=1
 )
 
 # ── Discover files ───────────────────────────────────────────────────
-mojo_files=("${(@f)$(find ./src/start ./src/move ./src/basic ./src/advanced \
-    -name '*.mojo' -type f | sort)}")
+mojo_files=("${(@f)$(find ./src -name '*.mojo' -type f | sort)}")
 total=${#mojo_files[@]}
 
 print -P "${BOLD}══════════════════════════════════════════${NC}"
@@ -115,10 +136,13 @@ expected_fail_ok_count=0
 skip_count=0
 unexpected_fail_count=0
 unexpected_pass_count=0
+warn_count=0
 
 typeset -a unexpected_failure_files=()
 typeset -a unexpected_failure_outputs=()
 typeset -a unexpected_pass_files=()
+typeset -a warning_files=()
+typeset -a warning_outputs=()
 
 # ── Run each file ────────────────────────────────────────────────────
 index=0
@@ -127,9 +151,32 @@ for file in "${mojo_files[@]}"; do
     rel_path="${file#./}"
     progress="[${index}/${total}]"
 
-    # --- Skip? ---
+    # --- Skip running, but still compile ---
     if (( ${+SKIP[$rel_path]} )); then
-        print -P "${DIM}${progress}${NC} ${CYAN}SKIP${NC}     ${rel_path}"
+        # A module that lives inside a package cannot be compiled on its own;
+        # it is compiled as part of the package by whoever imports it.
+        if [[ -f "${file:h}/__init__.mojo" ]]; then
+            print -P "${DIM}${progress}${NC} ${CYAN}SKIP${NC}     ${rel_path}  ${DIM}(package member)${NC}"
+            ((skip_count++))
+            continue
+        fi
+        build_out=$(mojo build --emit=object -o /dev/null "$file" 2>&1)
+        if [[ $? -ne 0 ]] && (( ! ${+EXPECT_FAIL[$rel_path]} )); then
+            print -P "${DIM}${progress}${NC} ${RED}FAIL${NC}     ${rel_path}  ${DIM}(compile-only)${NC}"
+            unexpected_failure_files+=("$rel_path")
+            unexpected_failure_outputs+=("$build_out")
+            ((unexpected_fail_count++))
+            continue
+        fi
+        build_warns=$(print -r -- "$build_out" | grep -a 'warning:.*deprecated')
+        if [[ -n "$build_warns" ]] && (( ! ${+EXPECT_WARN[$rel_path]} )); then
+            print -P "${DIM}${progress}${NC} ${YELLOW}WARN${NC}     ${rel_path}  ${DIM}(compile-only)${NC}"
+            warning_files+=("$rel_path")
+            warning_outputs+=("$build_warns")
+            ((warn_count++))
+            continue
+        fi
+        print -P "${DIM}${progress}${NC} ${CYAN}SKIP${NC}     ${rel_path}  ${DIM}(compiles)${NC}"
         ((skip_count++))
         continue
     fi
@@ -147,7 +194,15 @@ for file in "${mojo_files[@]}"; do
             unexpected_pass_files+=("$rel_path")
             ((unexpected_pass_count++))
         else
-            print -P "${DIM}${progress}${NC} ${GREEN}PASS${NC}     ${rel_path}"
+            warns=$(print -r -- "$output" | grep -a 'warning:.*deprecated')
+            if [[ -n "$warns" ]] && (( ! ${+EXPECT_WARN[$rel_path]} )); then
+                print -P "${DIM}${progress}${NC} ${YELLOW}WARN${NC}     ${rel_path}"
+                warning_files+=("$rel_path")
+                warning_outputs+=("$warns")
+                ((warn_count++))
+            else
+                print -P "${DIM}${progress}${NC} ${GREEN}PASS${NC}     ${rel_path}"
+            fi
             ((pass_count++))
         fi
     else
@@ -171,6 +226,7 @@ print -P "${BOLD}═════════════════════
 printf "  ${GREEN}%-22s %3d${NC}\n" "Passed:"            "$pass_count"
 printf "  ${BLUE}%-22s %3d${NC}\n" "Expected failures:"  "$expected_fail_ok_count"
 printf "  ${CYAN}%-22s %3d${NC}\n" "Skipped:"            "$skip_count"
+printf "  ${YELLOW}%-22s %3d${NC}\n" "Deprecation warnings:" "$warn_count"
 printf "  ${YELLOW}%-22s %3d${NC}\n" "Unexpected passes:" "$unexpected_pass_count"
 printf "  ${RED}%-22s %3d${NC}\n" "Unexpected failures:" "$unexpected_fail_count"
 printf "  %-22s %3d\n"            "Total:"               "$total"
@@ -188,6 +244,17 @@ if (( ${#unexpected_failure_files[@]} > 0 )); then
     done
 fi
 
+if (( ${#warning_files[@]} > 0 )); then
+    echo
+    print -P "${YELLOW}${BOLD}Deprecation warnings (compiles, but the syntax is on its way out):${NC}"
+    echo
+    for i in {1..${#warning_files[@]}}; do
+        print -P "  ${YELLOW}⚠  ${warning_files[$i]}${NC}"
+        echo "${warning_outputs[$i]}" | sed 's/^.*warning: /     warning: /' | sort -u | head -5
+        echo
+    done
+fi
+
 if (( ${#unexpected_pass_files[@]} > 0 )); then
     echo
     print -P "${YELLOW}${BOLD}Unexpected passes (previously expected to fail — review needed):${NC}"
@@ -201,6 +268,9 @@ fi
 # ── Exit code ────────────────────────────────────────────────────────
 if (( unexpected_fail_count > 0 )); then
     print -P "${RED}${BOLD}RESULT: FAIL${NC} — ${unexpected_fail_count} file(s) need attention"
+    exit 1
+elif (( warn_count > 0 )); then
+    print -P "${YELLOW}${BOLD}RESULT: FAIL${NC} — ${warn_count} file(s) use deprecated syntax"
     exit 1
 elif (( unexpected_pass_count > 0 )); then
     print -P "${YELLOW}${BOLD}RESULT: WARNING${NC} — ${unexpected_pass_count} expected-failure file(s) now pass, review the EXPECT_FAIL list"

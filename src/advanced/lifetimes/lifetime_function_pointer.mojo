@@ -2,7 +2,7 @@
 def shorter(
     word1: String, word2: String
 ) -> Pointer[String, origin_of(word1, word2)]:
-    if len(word1) < len(word2):
+    if word1.byte_length() < word2.byte_length():
         return Pointer[String, origin_of(word1, word2)](to=word1)
     else:
         return Pointer[String, origin_of(word1, word2)](to=word2)

@@ -1,6 +1,6 @@
 # src/basic/py4mojo/use_py_float.mojo
 
-from python import Python
+from std.python import Python
 
 
 def main() raises:

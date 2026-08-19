@@ -1,5 +1,5 @@
 # src/advanced/lifetimes/combined_lifetime.mojo
-def main():
+def main() raises:
     var a: Int = Int(input("Type the first integer `a`: "))
     var b: Int = Int(input("Type the second integer `b`: "))
     var c: Pointer[Int, origin = origin_of(a, b)]

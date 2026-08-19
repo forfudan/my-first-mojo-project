@@ -1,6 +1,6 @@
 # src/basic/composite/list_iteration_with_modification.mojo
 def main():
-    my_list = [1, 2, 3, 4, 5]
+    var my_list = [1, 2, 3, 4, 5]
 
     # Change the elements of the list using a for loop
     for ref i in my_list:

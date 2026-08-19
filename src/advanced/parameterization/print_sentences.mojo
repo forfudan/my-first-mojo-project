@@ -14,7 +14,7 @@ def print_sentence_six_times(sentence: String):
         print(sentence)
 
 
-def main():
+def main() raises:
     var first_sentence = String(input("Please enter the first sentence: "))
     print_sentence_twice(first_sentence)
 

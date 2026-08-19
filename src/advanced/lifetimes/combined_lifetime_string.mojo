@@ -1,10 +1,10 @@
 # src/advanced/lifetimes/combined_lifetime_string.mojo
-def main():
+def main() raises:
     var a: String = input("Type the first word `a`: ")
     var b: String = input("Type the first word `b`: ")
     var c: Pointer[String, origin = origin_of(a, b)]
 
-    if len(a) < len(b):
+    if a.byte_length() < b.byte_length():
         c = Pointer[String, origin = origin_of(a, b)](to=a)
     else:
         c = Pointer[String, origin = origin_of(a, b)](to=b)

@@ -1,5 +1,5 @@
 # src/basic/structs/human.mojo
-from std.memory import UnsafePointer
+from std.memory import Pointer
 
 
 struct Human:
@@ -31,24 +31,24 @@ def main():
         1.70,
         [UInt16(1901), UInt16(2), UInt16(5)],
     )
-    var ptr = UnsafePointer(to=human).bitcast[UInt8]()
+    var ptr = Pointer(to=human).unsafe_bitcast[UInt8]()
     print("Fields of `human: Human` on stack")
-    print("Byte 0x00-0x07 should be `data: UnsafePointer`:", end=" ")
-    print((ptr + 0).bitcast[Int]()[])
+    print("Byte 0x00-0x07 should be `data: Pointer`:", end=" ")
+    print(ptr.unsafe_offset(0).unsafe_bitcast[Int]()[unsafe_offset=0])
     print("Byte 0x08-0x0f should be `size: Int`:", end=" ")
-    print((ptr + 8).bitcast[Int]()[])
+    print(ptr.unsafe_offset(8).unsafe_bitcast[Int]()[unsafe_offset=0])
     print("Byte 0x18 should be `age: UInt8`:", end=" ")
-    print((ptr + 24).bitcast[UInt8]()[])
+    print(ptr.unsafe_offset(24).unsafe_bitcast[UInt8]()[unsafe_offset=0])
     print("Byte 0x1a-0x1b should be `height: Float16`:", end=" ")
-    print((ptr + 26).bitcast[Float16]()[])
-    print("Byte 0x20-0x27 should be `data: UnsafePointer`:", end=" ")
-    print((ptr + 32).bitcast[Int]()[])
+    print(ptr.unsafe_offset(26).unsafe_bitcast[Float16]()[unsafe_offset=0])
+    print("Byte 0x20-0x27 should be `data: Pointer`:", end=" ")
+    print(ptr.unsafe_offset(32).unsafe_bitcast[Int]()[unsafe_offset=0])
     print("Byte 0x28-0x2f should be `size: Int`:", end=" ")
-    print((ptr + 40).bitcast[Int]()[])
+    print(ptr.unsafe_offset(40).unsafe_bitcast[Int]()[unsafe_offset=0])
     print("Byte 0x30-0x37 should be `capacity: Int`:", end=" ")
-    print((ptr + 48).bitcast[Int]()[])
+    print(ptr.unsafe_offset(48).unsafe_bitcast[Int]()[unsafe_offset=0])
     print("========================================")
     print("Data of `date: List[UInt16]` on heap")
     var date_ptr = human.date.unsafe_ptr()
     for i in range(0, 3):
-        print((date_ptr + i)[], end=" ")
+        print(date_ptr[unsafe_offset=i], end=" ")

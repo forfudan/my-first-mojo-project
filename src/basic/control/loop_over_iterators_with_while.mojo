@@ -5,6 +5,7 @@ from std.memory import Pointer
 
 def main() raises:
     var iterator = range(10)
+    var i: Int
 
     # Replacement for the for loop
     while True:

@@ -37,7 +37,7 @@ struct Triangle(Writable):
         Returns:
             Float64: The area of the triangle.
         """
-        s = (self.a + self.b + self.c) / 2
+        var s = (self.a + self.b + self.c) / 2
         return (s * (s - self.a) * (s - self.b) * (s - self.c)) ** 0.5
 
     def perimeter(self) -> Float64:
@@ -63,13 +63,14 @@ struct Triangle(Writable):
 def main() raises:
     # A valid triangle with sides 3, 4, and 5
     print("Creating a valid triangle with sides 3, 4, and 5:")
-    triangle = Triangle(3, 4, 5)
+    var triangle = Triangle(3, 4, 5)
     print(String(triangle))
     print("Area: {}".format(triangle.area()))
     print("Perimeter: {}".format(triangle.perimeter()))
 
     # An invalid triangle with sides 1, 2, and 3
     print("\nCreating an invalid triangle with sides 1, 2, and 3:")
+    var invalid_triangle: Triangle
     try:
         invalid_triangle = Triangle(1, 2, 3)
         print(String(invalid_triangle))

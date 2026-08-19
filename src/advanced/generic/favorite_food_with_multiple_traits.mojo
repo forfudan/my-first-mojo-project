@@ -27,7 +27,7 @@ struct Cat(Animal, Measurable):
         return String("Meow! I love {}.").format(self.food)
 
     def length(self) -> Int:
-        return len(self.name)
+        return self.name.byte_length()
 
 
 struct Bird(Animal, Measurable):
@@ -45,7 +45,7 @@ struct Bird(Animal, Measurable):
         return String("Bugubugu! I love {}.").format(self.food)
 
     def length(self) -> Int:
-        return len(self.food)
+        return self.food.byte_length()
 
 
 struct Human(Animal, Measurable):
@@ -63,7 +63,7 @@ struct Human(Animal, Measurable):
         return String("Hi! I love {}.").format(self.food)
 
     def length(self) -> Int:
-        return len(self.name) + len(self.food)
+        return self.name.byte_length() + self.food.byte_length()
 
 
 def who_says_what[T: Animal](animal: T) raises:
@@ -75,9 +75,9 @@ def mysterious_number[U: Measurable](animal: U):
 
 
 def main() raises:
-    saku = Cat("Saku", "chicken")
-    bili = Bird("Bili", "worms")
-    yuhao = Human(
+    var saku = Cat("Saku", "chicken")
+    var bili = Bird("Bili", "worms")
+    var yuhao = Human(
         "Yuhao",
         (
             "生煎包 (sanci moedeu), a pan-fried baozi which is popular in Shanghai"

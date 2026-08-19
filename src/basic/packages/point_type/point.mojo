@@ -6,8 +6,8 @@ A example module containing a `Point` struct and related structs and functions.
 # ===----------------------------------------------------------------------=== #
 # Imports
 # ===----------------------------------------------------------------------=== #
-from std.memory import UnsafePointer
-import math
+from std.memory import Pointer
+import std.math
 
 # ===----------------------------------------------------------------------=== #
 # Type or value aliases known at compiled time
@@ -23,7 +23,7 @@ comptime PI = 3.14159
 
 
 def print_address(a: Point):
-    var ptr = UnsafePointer(to=a)
+    var ptr = Pointer(to=a)
     print("Memory address of the point:", String(ptr))
 
 
@@ -55,7 +55,7 @@ struct Point(Distanceable):
 
     def __distance__(self) -> EightByteFloat:
         """Calculates the distance from the origin (0, 0)."""
-        return math.sqrt(self.x * self.x + self.y * self.y)
+        return std.math.sqrt(self.x * self.x + self.y * self.y)
 
     def area(self) -> EightByteFloat:
         """Calculates the area of a circle with this point as the radius."""
