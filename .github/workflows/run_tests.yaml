@@ -21,7 +21,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        folder: [move, basic, advanced, extend]
+        folder: [start, move, basic, advanced, extend]
     steps:
       - uses: actions/checkout@v4
 
@@ -33,7 +33,9 @@ jobs:
           echo "Mojo:   $(mojo --version)"
           echo "Python: $(python --version)"
 
-      - name: "Run tests in src/${{ matrix.folder }}"
+      # verify.sh is the same script `pixi run verify` uses locally, so the
+      # expected-failure / expected-warning / skip lists cannot drift apart.
+      - name: "Verify src/${{ matrix.folder }}"
         run: |
           eval "$(pixi shell-hook --shell bash)"
-          bash .github/scripts/run_folder_tests.sh "src/${{ matrix.folder }}"
+          bash verify.sh "src/${{ matrix.folder }}"

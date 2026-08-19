@@ -1,6 +1,6 @@
-# src/basic/controls/print_integers_with_while.py
+# src/basic/control/print_integers_with_while.py
 def main():
-    var i = 0
+    i = 0
     while i < 5:
         print(i)
         i += 1  # Increment i by 1

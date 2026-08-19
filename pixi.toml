@@ -7,7 +7,7 @@ version = "20250904"
 
 [tasks]
 test = "bash test.sh"
-verify = "zsh verify.sh"
+verify = "bash verify.sh"
 
 [dependencies]
 coreutils = ">=9.0"

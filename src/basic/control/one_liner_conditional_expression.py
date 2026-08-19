@@ -2,6 +2,7 @@
 def main():
     a = 10
     b = "sunny"
+    c = "apple"
 
     judge_sign = "negative" if a < 0 else "non-negative"
     judge_weather = "nice" if b == "sunny" else "not nice"
