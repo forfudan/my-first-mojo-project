@@ -5,7 +5,7 @@ struct Team(ImplicitlyCopyable):
     def __init__(out self, var *names: String):
         # Copy the incoming names into the List
         self.names = List[String]()
-        for name in names^:
+        for name in names:
             self.names.append(name)
 
     def __init__(out self, *, copy: Self):

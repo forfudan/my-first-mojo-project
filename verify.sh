@@ -81,6 +81,7 @@ EXPECT_FAIL=(
     "src/basic/variables/redefinition.mojo"
     "src/basic/variables/scope_of_for_loop_variable.mojo"
     "src/basic/variables/use_variables_of_sub_scopes.mojo"
+    "src/basic/variables/variable_creation_without_var.mojo"
     # advanced/lifetimes
     "src/advanced/lifetimes/combined_lifetime_wrong.mojo"
     "src/advanced/lifetimes/copy_values_of_different_origins.mojo"
@@ -104,10 +105,7 @@ EXPECT_FAIL=(
 # them to explain what older code looks like. They must still compile; their
 # deprecation warnings are expected and are not reported.
 EXPECT_WARN=(
-    "src/basic/variables/variable_creation_without_var.mojo"
-    "src/basic/variables/variable_creation_without_var_but_with_types.mojo"
-    "src/move/sort_from_py.mojo"
-    "src/move/triangle_from_py.mojo"
+    # Empty since Mojo v1.1.0 turned the last of these deprecations into errors.
 )
 
 # ── Skip list ────────────────────────────────────────────────────────
