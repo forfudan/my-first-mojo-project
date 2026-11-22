@@ -121,6 +121,7 @@ SKIP=(
     # basic/control — interactive, infinite loop, or too slow
     "src/basic/control/give_commands.mojo"
     "src/basic/control/give_commands_with_while.mojo"
+    "src/basic/control/give_commands_with_match.mojo"
     "src/basic/control/is_prime_number.py"
     "src/basic/control/print_calendar.mojo"
     "src/basic/control/value_not_converging.mojo"
