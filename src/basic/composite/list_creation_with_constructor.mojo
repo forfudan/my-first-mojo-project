@@ -9,7 +9,7 @@ def main():
         [List[Int]([1, 2]), List[Int]([3, 4]), List[Int]([5, 6])]
     )
 
-    print(my_list_of_integers[0])
-    print(my_list_of_floats[0])
-    print(my_list_of_strings[0])
-    print(my_list_of_list_of_integers[0][0])
+    print(my_list_of_integers)
+    print(my_list_of_floats)
+    print(my_list_of_strings)
+    print(my_list_of_list_of_integers)

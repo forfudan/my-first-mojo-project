@@ -1,3 +1,5 @@
+use std::time::Instant;
+
 fn fib (n: i64) -> i64 {
     if n <= 1 {
         return n;
@@ -6,7 +8,9 @@ fn fib (n: i64) -> i64 {
 }
 
 fn main() {
-    for i in 0..50 {
+    let start = Instant::now();
+    for i in 0..40 {
         print!("{}, ", fib(i));
     }
+    println!("\nTime: {} seconds", start.elapsed().as_secs_f64());
 }

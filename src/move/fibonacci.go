@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+    "fmt"
+    "time"
+)
 
 func fib(n int64) int64 {
     if n <= 1 {
@@ -10,7 +13,9 @@ func fib(n int64) int64 {
 }
 
 func main() {
-    for i := int64(0); i < 50; i++ {
+    start := time.Now()
+    for i := int64(0); i < 40; i++ {
         fmt.Printf("%d, ", fib(i))
     }
+    fmt.Printf("\nTime: %v seconds\n", time.Since(start).Seconds())
 }

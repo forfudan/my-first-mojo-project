@@ -1,5 +1,6 @@
 #include <stdint.h>
 #include <stdio.h>
+#include <time.h>
 
 int64_t fib(int n) {
   if (n <= 1) {
@@ -9,7 +10,9 @@ int64_t fib(int n) {
 }
 
 int main() {
-  for (int i = 0; i < 50; i++) {
-    printf("%lld, ", fib(i));
+  clock_t start = clock();
+  for (int i = 0; i < 40; i++) {
+    printf("%lld, ", (long long)fib(i));
   }
+  printf("\nTime: %f seconds\n", (double)(clock() - start) / CLOCKS_PER_SEC);
 }

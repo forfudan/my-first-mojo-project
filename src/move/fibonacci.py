@@ -1,15 +1,17 @@
 import time
 
+
 def fib(n: int) -> int:
     if n <= 1:
         return n
     return fib(n - 1) + fib(n - 2)
 
+
 def main():
+    start = time.perf_counter()
     for i in range(40):
         print(fib(i), end=", ")
+    print()
+    print("Time:", time.perf_counter() - start, "seconds")
 
-t0 = time.time()
 main()
-t1 = time.time()
-print(f"\nExecution time: {t1 - t0:.6f} seconds")

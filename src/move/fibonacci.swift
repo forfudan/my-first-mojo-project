@@ -1,3 +1,5 @@
+import Foundation
+
 func fib(_ n: Int64) -> Int64 {
     if n <= 1 {
         return n
@@ -6,9 +8,11 @@ func fib(_ n: Int64) -> Int64 {
 }
 
 func main() {
-    for i in 0..<50 {
+    let start = Date()
+    for i in 0..<40 {
         print("\(fib(Int64(i))), ", terminator: "")
     }
+    print("\nTime: \(-start.timeIntervalSinceNow) seconds")
 }
 
 main()
