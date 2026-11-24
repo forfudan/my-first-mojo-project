@@ -65,6 +65,12 @@ EXPECT_FAIL=(
     "src/basic/functions/fn_read_and_modify.mojo"
     "src/basic/functions/keywords_deprecation.mojo"
     "src/basic/functions/read_keyword_change.mojo"
+    # basic/matching
+    "src/basic/matching/list_match_without_default.mojo"
+    "src/basic/matching/list_unpacking_wrong_length.mojo"
+    "src/basic/matching/names_read_only.mojo"
+    "src/basic/matching/optional_value_on_empty.mojo"
+    "src/basic/matching/while_case_todo_pop_first.mojo"
     # basic/string
     "src/basic/string/f_string.mojo"
     "src/basic/string/string_len.mojo"
